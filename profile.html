@@ -7,20 +7,34 @@
 </head>
 <body>
 	<h1>Mon Profil à moi que c'est le mien</h1>
+	<button id="themeToggle" class="theme-toggle">🌗 Thème</button>
 
 	<button id="logoutBtn">Logout</button>
 
 	<div id="user"></div>
 	<div id="xp"></div>
 
-	<h2>XP progression</h2>
-	<svg id="xpChart" width="600" height="300"></svg>
+	<div class="card">
+		<h2>XP Timeline</h2>
+		<svg id="xpTimeline" width="100%" height="200"></svg>
+	</div>
 
-	<h2>PASS / FAIL</h2>
-	<svg id="pieChart" width="200" height="200"></svg>
+	<div class="card">
+		<h2>Pass / Fail</h2>
+		<select id="eventFilter">
+			<option value="all">Tous les events</option>
+			<option value="project">Projets</option>
+			<option value="exercise">Exercices</option>
+			<option value="piscine">Piscine</option>
+			<option value="exam">Examens</option>
+		</select>
+		<svg id="passFailChart" width="200" height="200"></svg>
+	</div>
 
-	<h2>XP par projet</h2>
-	<svg id="barChart" width="600" height="300"></svg>
+	<div class="card">
+		<h2>XP par projet</h2>
+		<svg id="xpProjectsChart" width="100%" height="200"></svg>
+	</div>
 
 	<script type="module" src="./js/profile.js"></script>
 </body>

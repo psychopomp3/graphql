@@ -8,5 +8,7 @@ export async function graphqlRequest(query, token) {
 		body: JSON.stringify({ query }),
 	});
 
-	return res.json();
+	//return res.json();
+	const json = await res.json();
+	return json.data;
 }
