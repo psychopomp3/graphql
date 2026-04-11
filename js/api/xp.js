@@ -25,7 +25,14 @@ export async function getXPTransactions(token) {
 // 2) XP total
 export async function getTotalXP(token) {
 	const tx = await getXPTransactions(token);
-	return tx.reduce((sum, t) => sum + t.amount, 0);
+	const totalXP = tx.reduce((sum, t) => sum + t.amount, 0);
+
+	/*document.getElementById("xp").innerHTML = `
+		<h2>XP total</h2>
+		<p>${totalXP}</p>
+	`;*/
+
+	return totalXP;
 }
 
 // 3) XP par projet (groupé)

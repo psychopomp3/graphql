@@ -13,4 +13,9 @@ export async function getUser(token) {
 
 	const data = await graphqlRequest(query, token);
 	return data.user[0];
+
+	/*document.getElementById("user").innerHTML = `
+		<h2>${user.login}</h2>
+		<p>ID: ${user.id}</p>
+	`;*/
 }
