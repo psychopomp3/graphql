@@ -1,24 +1,22 @@
-/* theme.css */
-
 :root {
-  --bg: #ffffff;
-  --text: #222;
-  --card: #f4f4f4;
-  --accent: #0077ff;
+	--bg: #ffffff;
+	--text: #222;
+	--card: #f4f4f4;
+	--accent: #0077ff;
 }
 
 html.dark {
-  --bg: #1e1e1e;
-  --text: #eaeaea;
-  --card: #2a2a2a;
-  --accent: #4da3ff;
+	--bg: #1e1e1e;
+	--text: #eaeaea;
+	--card: #2a2a2a;
+	--accent: #4da3ff;
 }
 
 body {
-  background-color: var(--bg);
-  color: var(--text);
-  font-family: sans-serif;
-  transition: background-color 0.3s, color 0.3s;
+	background-color: var(--bg);
+	color: var(--text);
+	font-family: sans-serif;
+	transition: background-color 0.3s, color 0.3s;
 }
 
 .title {
@@ -27,17 +25,17 @@ body {
 }
 
 .card {
-  background-color: var(--card);
-  padding: 1rem;
-  border-radius: 8px;
-  transition: background-color 0.3s;
+	background-color: var(--card);
+	padding: 1rem;
+	border-radius: 8px;
+	transition: background-color 0.3s;
 }
 
 button.theme-toggle {
-  background: var(--accent);
-  color: white;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
-  cursor: pointer;
+	background: var(--accent);
+	color: white;
+	border: none;
+	padding: 0.5rem 1rem;
+	border-radius: 6px;
+	cursor: pointer;
 }

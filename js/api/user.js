@@ -7,6 +7,7 @@ export async function getUser(token) {
 				id
 				login
 				attrs
+				campus
 			}
 		}
 	`;
@@ -24,7 +25,8 @@ export function displayUser(user) {
 
 	document.getElementById("userInfo").innerHTML = `
 		<h2>Welcome, ${firstName} ${lastName}!</h2>
-		<h3>@${user.login}</h3>
-		<p>ID: ${user.id}</p>
+		<p>(ID: ${user.id})</p>
+		<h3>username: ${user.login}</h3>
+		<h3>Campus: ${user.campus}</h3>
 	`;
 }

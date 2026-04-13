@@ -52,7 +52,7 @@ export function computePassFail(progressList) {
 }
 
 // 4) Compute skills
-export function computeSkills(progressList) {
+/*export function computeSkills(progressList) {
 	const skills = {};
 
 	progressList.forEach(p => {
@@ -84,6 +84,54 @@ export function computeSkills(progressList) {
 	}));
 
 	console.log("skills:", result);
+
+	return result;
+}*/
+export function computeSkills(progressList) {
+	const skills = {};
+
+	// mapping des mots-clés → skills
+	const skillMap = {
+		"go": "Go",
+		"js": "JavaScript",
+		"javascript": "Java**Script",
+		"algo": "Algorithms",
+		"game": "VideoGame",
+		"graphql": "Backend",
+		"backend": "Backend",
+		"frontend": "Frontend",
+		"front_end": "Frontend",
+		"html": "Frontend",
+		"css": "Frontend",
+		"unix": "Unix",
+		"ux": "UX",
+		"ui": "UI",
+		"docker": "Docker"
+	};
+
+	progressList.forEach(p => {
+		const name = p.object?.name?.toLowerCase() || "";
+
+		for (const key in skillMap) {
+			if (name.includes(key)) {
+				const skill = skillMap[key];
+
+				if (!skills[skill]) {
+					skills[skill] = { total: 0, count: 0 };
+				}
+
+				skills[skill].total += p.grade;
+				skills[skill].count++;
+			}
+		}
+	});
+
+	const result = Object.entries(skills).map(([name, data]) => ({
+		name,
+		value: (data.total / data.count) * 100
+	}));
+
+	console.log("real skills:", result);
 
 	return result;
 }
