@@ -1,5 +1,4 @@
-// js/api/api-xp.js
-import { graphqlRequest } from "../graphql-request.js";
+import { graphqlRequest } from "./graphql-request.js";
 
 // 1) XP brut (toutes les transactions XP)
 export async function getXPTransactions(token) {
@@ -26,11 +25,6 @@ export async function getXPTransactions(token) {
 export async function getTotalXP(token) {
 	const tx = await getXPTransactions(token);
 	const totalXP = tx.reduce((sum, t) => sum + t.amount, 0);
-
-	/*document.getElementById("xp").innerHTML = `
-		<h2>XP total</h2>
-		<p>${totalXP}</p>
-	`;*/
 
 	return totalXP;
 }

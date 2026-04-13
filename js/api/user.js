@@ -1,4 +1,4 @@
-import { graphqlRequest } from "../graphql-request.js";
+import { graphqlRequest } from "./graphql-request.js";
 
 export async function getUser(token) {
 	const query = `
@@ -6,16 +6,25 @@ export async function getUser(token) {
 			user {
 				id
 				login
-				profile
+				attrs
 			}
 		}
 	`;
 
 	const data = await graphqlRequest(query, token);
 	return data.user[0];
+}
 
-	/*document.getElementById("user").innerHTML = `
-		<h2>${user.login}</h2>
+
+// Display:
+export function displayUser(user) {
+	const attrs = user.attrs || {};
+	const firstName = attrs.firstName || "N/A";
+	const lastName = attrs.lastName || "N/A";
+
+	document.getElementById("userInfo").innerHTML = `
+		<h2>Welcome, ${firstName} ${lastName}!</h2>
+		<h3>@${user.login}</h3>
 		<p>ID: ${user.id}</p>
-	`;*/
+	`;
 }

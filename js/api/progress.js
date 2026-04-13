@@ -1,4 +1,4 @@
-import { graphqlRequest } from "../graphql-request.js";
+import { graphqlRequest } from "./graphql-request.js";
 
 // 1) Progress brut
 export async function getProgress(token) {
@@ -49,4 +49,55 @@ export function computePassFail(progressList) {
 	});
 
 	return { pass, fail };
+}
+
+// 4) Compute skills
+export function computeSkills(progressList) {
+	const skills = {};
+
+	progressList.forEach(p => {
+		const type = p.object?.type;
+
+		// sécurité si données incomplètes
+		if (!type || typeof p.grade !== "number") return;
+
+		if (!skills[type]) {
+			skills[type] = { total: 0, count: 0 };
+		}
+
+		skills[type].total += p.grade;
+		skills[type].count++;
+	});
+
+	// map pour changer les intitulés
+	const labelMap = {
+		games: "Games",
+		project: "Projects",
+		exercise: "Exercises",
+		piscine: "Piscine",
+		exam: "Exams"
+	};
+
+	const result = Object.entries(skills).map(([name, data]) => ({
+		name: labelMap[name] || name,
+		value: (data.total / data.count) * 100
+	}));
+
+	console.log("skills:", result);
+
+	return result;
+}
+
+// Display:
+export function displaySkills(skills) {
+	const html = skills.map(s => `
+		<div>
+			${s.name}: ${s.value.toFixed(1)}%
+		</div>
+	`).join("");
+
+	document.getElementById("skills").innerHTML = `
+		<h2>Skills</h2>
+		${html}
+	`;
 }

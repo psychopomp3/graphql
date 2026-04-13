@@ -15,17 +15,22 @@ html.dark {
 }
 
 body {
-  background: var(--bg);
+  background-color: var(--bg);
   color: var(--text);
   font-family: sans-serif;
-  transition: background 0.3s, color 0.3s;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.title {
+	font-size: larger;
+	font-style: italic;
 }
 
 .card {
-  background: var(--card);
+  background-color: var(--card);
   padding: 1rem;
   border-radius: 8px;
-  transition: background 0.3s;
+  transition: background-color 0.3s;
 }
 
 button.theme-toggle {

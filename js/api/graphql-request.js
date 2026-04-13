@@ -10,5 +10,9 @@ export async function graphqlRequest(query, token) {
 
 	//return res.json();
 	const json = await res.json();
+	if (json.errors) {
+		console.error("GraphQL errors:", json.errors);
+		throw new Error("GraphQL error");
+	}
 	return json.data;
 }
