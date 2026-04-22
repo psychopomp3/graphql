@@ -23,10 +23,20 @@ export function displayUser(user) {
 	const firstName = attrs.firstName || "N/A";
 	const lastName = attrs.lastName || "N/A";
 
+	document.getElementById("welcome").innerHTML = `
+		Welcome, ${firstName} ${lastName}!
+	`;
+
 	document.getElementById("userInfo").innerHTML = `
-		<h2>Welcome, ${firstName} ${lastName}!</h2>
-		<p>(ID: ${user.id})</p>
-		<h3>username: ${user.login}</h3>
-		<h3>Campus: ${user.campus}</h3>
+		<h2>Your Space 10 dashboard</h2>
+		<fieldset>
+			<h3>username: </h3>
+			<p>${user.login}</p>
+			<span>(ID: ${user.id})</span>
+		</fieldset>
+		<fieldset>
+			<h3>Campus: </h3>
+			<p>${user.campus}</p>
+		</fieldset>
 	`;
 }

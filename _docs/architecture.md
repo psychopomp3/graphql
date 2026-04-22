@@ -4,21 +4,27 @@ graphql/
 ├── profile.html
 │
 ├── js/
-│   ├── 1. app.js	(pilote principal de l'app, gestion login/token)
-│   ├── 2. graphql-request.js	(fonction générique de requête à l'API)
-│   ├── 3. profile.js	(génére le dashboard global)
+│   ├── app.js	(pilote principal de l'app, gestion login/token)
+│   ├── profile.js	(génére le dashboard global)
 │	│
 │   ├── api/
+│   │   ├── graphql-request.js	(fonction générique de requête à l'API)
 │   │   ├── user.js	(traite les infos utilisateur)
 │   │   ├── xp.js	(traite les scores xp)
-│   │   └── progress.js	(progression)
+│   │   ├── progress.js	(progression)
+│   │   └── audit.js	(ratio d'audit)
 │	│
-│   └── charts/
-│      ├── xp-chart.js
-│      ├── pie-chart.js
-│      └── bar-chart.js
+│   └── graphs/	(crée les graphiques SVG)
+│      ├── 1-xp-timeline.js
+│      ├── 2-pass-fail.js
+│      └── 3-xp-by-project.js
 │
-└── css/
-   ├── style.css
-   └── fonts.css
+├── css/
+│  ├── index.css
+│  ├── profile.css
+│  └── fonts.css
+│
+├── fonts/
+│
+└── img/
 ```

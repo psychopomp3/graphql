@@ -1,0 +1,165 @@
+/*:root {
+	--bg: #ffffff;
+	--text: #222;
+	--card: #f4f4f4;
+	--accent: #0077ff;
+}
+
+html.dark {
+	--bg: #1e1e1e;
+	--text: #eaeaea;
+	--card: #2a2a2a;
+	--accent: #4da3ff;
+}*/
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+/*reset simple des tyles prédéfinis:*/
+input, button, textarea, select, fieldset {
+	appearance: none;
+	border: none;
+	background: none;
+	font: inherit;
+	color: inherit;
+	padding: 0;
+	margin: 0;
+}
+
+:root {
+	/*--bg: #f5f5f5;*/
+	--bg: #b795ff;
+	--bg-card: #ffffff;
+	--bg-hover: #eaeaea;
+	--bg-opac: rgba(255, 255, 255, .2);
+
+	--text: #222;
+	--text-muted: #555;
+
+	--accent: #b795ff/*0077ff*/;
+	--accent-hover: #3399ff;
+
+	--border: #dcdcdc;
+
+	--radius: 10px;
+	--transition: 0.25s ease;
+}
+
+html.dark {
+	--bg: #1a191c;
+	--bg-card: #222124;
+	--bg-hover: #2c2b2f;
+	--bg-opac: rgba(0, 0, 0, .2);
+
+	--text: #eaeaea;
+	--text-muted: #b5b5b5;
+
+	--accent: #b795ff/*4da3ff*/;
+	--accent-hover: #6bb8ff;
+
+	--border: #2c2b2f;
+}
+
+html, body {
+	width: 100%;
+	height: 100%;
+	color: var(--text);
+	font-family: "IBM Plex Mono", sans-serif;
+	background-color: var(--bg);
+	transition: background-color var(--transition), color var(--transition);
+}
+
+header {
+	background-color: var(--bg-opac);
+	min-height: fit-content;
+	padding: 2vw;
+	display: flex;
+	justify-content: flex-end;
+	position: relative;
+}
+
+header::before {
+	content: "";
+	position: absolute;
+	inset: 0 0 100% 0;
+	background-color: rgba(75, 0, 130, .2);
+}
+
+header h1 {
+	/*background-color: red;*/
+	width: 100%;
+	line-height: 4vw;
+	text-align: center;
+	vertical-align: bottom;
+}
+
+header button {
+	background-color: var(--text);
+	color: var(--bg);
+	padding: 1vw;
+	width: 4vw;
+}
+
+#app {
+	/*background-color: orange;*/
+	width: 100%;
+	height: 100%;
+	padding: 2px;
+	/*border: 2px var(--text-muted) solid;
+	border-radius: calc(2vw + 4px);*/
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#auth {
+	background-color: var(--bg-opac);
+	padding: 2vw;
+	/*border: 2px var(--text-muted) solid;*/
+	border-radius: 1vw;
+	/*display: flex;
+	justify-content: center;
+	align-items: center;*/
+	transform: translateY(-4vw);
+}
+
+#auth h1 {
+	/*background-color: rgba(255, 69, 0, .2);*/
+	border-bottom: .2rem solid var(--text);
+	padding-bottom: .2vw;
+	margin-bottom: .5vw;
+}
+
+#auth fieldset {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+#username,
+#password {
+	/*background-color: var(--bg-opac);*/
+	border-left: .1rem solid var(--bg-opac);
+	border-bottom: .1rem solid var(--bg-opac);
+	padding: 1vw;
+	margin-right: .5vw;
+}
+
+#loginBtn {
+	color: var(--bg);
+	background-color: var(--text);
+	padding: 1vw;
+}
+
+#error p {
+	background-color: rgba(255, 0, 0, .2);
+	margin-top: .5vw;
+	padding: .5vw 0;
+	/*border-top: .2rem solid rgb(197, 0, 0);*/
+	text-align: center;
+	color: darkred;
+	font-weight: bolder;
+	letter-spacing: .5vw;
+}

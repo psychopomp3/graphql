@@ -5,40 +5,46 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Document</title>
 
-	<link rel="stylesheet" href="./css/style.css">
+	<link rel="stylesheet" href="./css/fonts.css">
+	<link rel="stylesheet" href="./css/profile.css">
 </head>
 <body>
-	<h1>- Your <span class="title">Espace 10</span> Dashboard -</h1>
-	<button id="themeToggle" class="theme-toggle">🌗 Thème</button>
+	<header>
+		<h1 id="welcome"></h1>
+		<button id="themeToggle" class="theme-toggle">🌗</button>
+		<button id="logoutBtn">Logout</button>
+	</header>
 
-	<button id="logoutBtn">Logout</button>
+	<main>
+		<div class="card">
+			<div id="userInfo"></div>
+			<div id="xpTotal"></div>
+			<div id="audit"></div>
+			<div id="skills"></div>
+		</div>
 
-	<div id="userInfo"></div>
-	<div id="xpTotal"></div>
-	<div id="audit"></div>
-	<div id="skills"></div>
+		<div class="card">
+			<h2>Pass / Fail</h2>
+			<select id="eventFilter">
+				<option value="all">Tous les events</option>
+				<option value="project">Projets</option>
+				<option value="exercise">Exercices</option>
+				<option value="piscine">Piscine</option>
+				<option value="exam">Examens</option>
+			</select>
+			<svg id="passFailChart" width="200" height="200"></svg>
+		</div>
 
-	<div class="card">
-		<h2>XP Timeline</h2>
-		<svg id="xpTimeline" width="100%" height="200"></svg>
-	</div>
+		<div class="card">
+			<h2>XP Timeline</h2>
+			<svg id="xpTimeline" width="100%" height="200"></svg>
+		</div>
 
-	<div class="card">
-		<h2>Pass / Fail</h2>
-		<select id="eventFilter">
-			<option value="all">Tous les events</option>
-			<option value="project">Projets</option>
-			<option value="exercise">Exercices</option>
-			<option value="piscine">Piscine</option>
-			<option value="exam">Examens</option>
-		</select>
-		<svg id="passFailChart" width="200" height="200"></svg>
-	</div>
-
-	<div class="card">
-		<h2>XP par projet</h2>
-		<svg id="xpProjectsChart" width="100%" height="200"></svg>
-	</div>
+		<div class="card">
+			<h2>XP par projet</h2>
+			<svg id="xpProjectsChart" width="100%" height="200"></svg>
+		</div>
+	</main>
 
 	<script type="module" src="./js/profile.js"></script>
 </body>

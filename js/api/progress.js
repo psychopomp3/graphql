@@ -7,6 +7,7 @@ export async function getProgress(token) {
 			progress {
 				grade
 				createdAt
+				path
 				object {
 					name
 					type
@@ -92,28 +93,29 @@ export function computeSkills(progressList) {
 
 	// mapping des mots-clés → skills
 	const skillMap = {
+		"piscine-go": "Go",
 		"go": "Go",
+		"piscine-js": "JavaScript",
 		"js": "JavaScript",
-		"javascript": "Java**Script",
 		"algo": "Algorithms",
-		"game": "VideoGame",
-		"graphql": "Backend",
-		"backend": "Backend",
+		"algorithm": "Algorithms",
 		"frontend": "Frontend",
-		"front_end": "Frontend",
-		"html": "Frontend",
-		"css": "Frontend",
+		"front": "Frontend",
+		"back": "Backend",
+		"backend": "Backend",
+		"graphql": "Backend",
+		"docker": "Docker",
 		"unix": "Unix",
-		"ux": "UX",
+		"shell": "Unix",
 		"ui": "UI",
-		"docker": "Docker"
+		"ux": "UX"
 	};
 
 	progressList.forEach(p => {
-		const name = p.object?.name?.toLowerCase() || "";
+		const path = p.path?.toLowerCase() || "";
 
 		for (const key in skillMap) {
-			if (name.includes(key)) {
+			if (path.includes(key)) {
 				const skill = skillMap[key];
 
 				if (!skills[skill]) {
@@ -146,6 +148,6 @@ export function displaySkills(skills) {
 
 	document.getElementById("skills").innerHTML = `
 		<h2>Skills</h2>
-		${html}
+		<p>${html}</p>
 	`;
 }

@@ -17,7 +17,7 @@ loginBtn.addEventListener("click", async () => {
 		});
 
 		if (!res.ok) {
-			throw new Error("Identifiants incorrects");
+			throw new Error("Invalid Credentials");
 		}
 
 		const data = await res.json();
@@ -33,7 +33,8 @@ loginBtn.addEventListener("click", async () => {
 		window.location.href = "profile.html";
 
 	} catch (err) {
-		errorEl.textContent = err.message;
+		//errorEl.textContent = err.message;
+		errorEl.innerHTML = `<p>${err.message}</p>`;
 	}
 });
 
