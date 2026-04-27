@@ -32,10 +32,13 @@ export function displayUser(user) {
 		<fieldset>
 			<h3>username: </h3>
 			<p>${user.login}</p>
-			<span>(ID: ${user.id})</span>
+		</fieldset>		
+		<fieldset>
+			<h3>id: </h3>
+			<p>${user.id}</p>
 		</fieldset>
 		<fieldset>
-			<h3>Campus: </h3>
+			<h3>campus: </h3>
 			<p>${user.campus}</p>
 		</fieldset>
 	`;

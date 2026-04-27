@@ -32,13 +32,13 @@ export function drawXPTimeline(svg, transactions) {
 	// SVG
 	svg.innerHTML = `
 		<!-- Axes -->
-		<line x1="0" y1="${height}" x2="${width}" y2="${height}" stroke="#aaa" />
-		<line x1="0" y1="0" x2="0" y2="${height}" stroke="#aaa" />
+		<line x1="0" y1="${height}" x2="${width}" y2="${height}" stroke="currentColor" />
+		<line x1="0" y1="0" x2="0" y2="${height}" stroke="currentColor" />
 
 		<!-- Ligne -->
 		<polyline 
 		fill="none" 
-		stroke="blue" 
+		stroke="currentColor" 
 		stroke-width="2" 
 		points="${points.join(" ")}"
 		/>
@@ -47,7 +47,7 @@ export function drawXPTimeline(svg, transactions) {
 		${points
 		.map(p => {
 			const [x, y] = p.split(",");
-			return `<circle cx="${x}" cy="${y}" r="3" fill="red" />`;
+			return `<circle cx="${x}" cy="${y}" r="3" fill="var(--error-bg)" />`;
 		})
 		.join("")}
 	`;

@@ -27,8 +27,8 @@ export function drawPassFail(svg, pass, fail) {
 		<circle
 		cx="100" cy="100" r="${radius}"
 		fill="none"
-		stroke="green"
-		stroke-width="25"
+		stroke="currentColor"
+		stroke-width="20"
 		stroke-dasharray="${oldPass} ${circumference}"
 		transform="rotate(-90 100 100)"
 		>
@@ -42,8 +42,8 @@ export function drawPassFail(svg, pass, fail) {
 		<circle
 		cx="100" cy="100" r="${radius}"
 		fill="none"
-		stroke="red"
-		stroke-width="15"
+		stroke="currentColor"
+		stroke-width="20"
 		stroke-dasharray="${oldFail} ${circumference}"
 		stroke-dashoffset="-${passLength}"
 		border="yellow"

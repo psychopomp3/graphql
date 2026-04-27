@@ -24,7 +24,7 @@ export function drawXPProjects(svg, xpByProject) {
 			y="${y}" 
 			width="${barWidth - 5}" 
 			height="${barHeight}" 
-			fill="steelblue"
+			fill="currentColor"
 			/>
 			<text 
 			x="${x + barWidth / 2}" 

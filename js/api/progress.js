@@ -140,14 +140,15 @@ export function computeSkills(progressList) {
 
 // Display:
 export function displaySkills(skills) {
-	const html = skills.map(s => `
-		<div>
-			${s.name}: ${s.value.toFixed(1)}%
-		</div>
+	const skillsDisplay = skills.map(s => `
+		<fieldset>
+			<h3>${s.name}: </h3>
+			<p>${s.value.toFixed(1)}%</p>
+		</fieldset>
 	`).join("");
 
 	document.getElementById("skills").innerHTML = `
 		<h2>Skills</h2>
-		<p>${html}</p>
+		<p>${skillsDisplay}</p>
 	`;
 }
