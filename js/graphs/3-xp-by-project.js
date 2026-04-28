@@ -1,8 +1,11 @@
 export function drawXPProjects(svg, xpByProject) {
 	if (!xpByProject || xpByProject.length === 0) return;
 
-	const width = svg.clientWidth;
-	const height = svg.clientHeight;
+	/*const width = svg.clientWidth;
+	const height = svg.clientHeight;*/
+	const width = svg.viewBox.baseVal.width || svg.clientWidth || 800;
+	const height = svg.viewBox.baseVal.height || svg.clientHeight || 200;
+
 
 	// Top 10
 	const data = [...xpByProject]
@@ -17,6 +20,9 @@ export function drawXPProjects(svg, xpByProject) {
 		const barHeight = (d.xp / maxXP) * height;
 		const x = i * barWidth;
 		const y = height - barHeight;
+		const label = d.project.length > 12
+			? d.project.slice(0, 10) + "…"
+			: d.project;
 
 		return `
 			<rect 
@@ -28,11 +34,21 @@ export function drawXPProjects(svg, xpByProject) {
 			/>
 			<text 
 			x="${x + barWidth / 2}" 
-			y="${height - 5}" 
+			y="${y + 10}" 
 			text-anchor="middle"
 			font-size="10"
 			>
-			${d.project}
+				${d.xp} B
+			</text>
+			<text 
+			x="${x + barWidth / 2}" 
+			y="${height - 5}" 
+			text-anchor="middle"
+			font-size="10"
+			${label.length > 18 ? `textLength="${barWidth - 10}" lengthAdjust="spacingAndGlyphs"` : ""}
+			>
+				<title>${d.project}</title>
+  				${label}
 			</text>
 		`;
 		})

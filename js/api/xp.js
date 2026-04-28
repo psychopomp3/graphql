@@ -34,6 +34,7 @@ export async function getXPTransactions(token) {
 			}
 		) {
 			amount
+			createdAt
 			path
 			object {
 				name
@@ -119,7 +120,7 @@ export async function getXPTransactions(token) {
 		return true;
 	});
 
-	console.log("FILTERED:", filtered.map(t => t.path));
+	//console.log("FILTERED:", filtered.map(t => t.path));
 
 	return filtered;
 }
@@ -138,7 +139,7 @@ export async function getTotalXP(token) {
 			map[project] = 0;
 		}
 
-		// 👇 on garde le MAX au lieu de sommer
+		// on garde le MAX au lieu de sommer
 		if (t.amount > map[project]) {
 			map[project] = t.amount;
 		}
@@ -146,9 +147,9 @@ export async function getTotalXP(token) {
 
 	const totalXP = Object.values(map).reduce((sum, xp) => sum + xp, 0);
 
-	console.log("XP par projet (max):", map);
-	console.log("TOTAL XP corrigé:", totalXP);
-	console.log(tx.filter(t => t.path.includes("ascii-art")));
+	//console.log("XP par projet (max):", map);
+	//console.log("TOTAL XP corrigé:", totalXP);
+	//console.log(tx.filter(t => t.path.includes("ascii-art")));
 
 	return Math.round(totalXP / 1000);
 }

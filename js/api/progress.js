@@ -41,13 +41,32 @@ export async function getProgressByType(token, type) {
 
 // 3) Calcul PASS/FAIL
 export function computePassFail(progressList) {
+	const map = {};
+
+	progressList.forEach(p => {
+		const key = p.path || p.object?.name;
+
+		if (!key) return;
+
+		// garder le plus récent
+		if (
+			!map[key] ||
+			new Date(p.createdAt) > new Date(map[key].createdAt)
+		) {
+			map[key] = p;
+		}
+	});
+
 	let pass = 0;
 	let fail = 0;
 
-	progressList.forEach(p => {
+	Object.values(map).forEach(p => {
 		if (p.grade >= 1) pass++;
 		else fail++;
 	});
+
+	console.log("PASS:", pass);
+	console.log("FAIL:", fail);
 
 	return { pass, fail };
 }

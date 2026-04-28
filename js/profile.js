@@ -56,7 +56,7 @@ async function initProfile() {
 		// 3) XP TIMELINE GRAPH
 		const xpTransactions = await getXPTransactions(token);
 		const svgTimeline = document.getElementById("xpTimeline");
-
+		console.log("XP TIMELINE INPUT:", xpTransactions);
 		drawXPTimeline(svgTimeline, xpTransactions);
 
 		// 4) PASS / FAIL GRAPH (GLOBAL)
