@@ -37,7 +37,7 @@ async function initProfile() {
 
 		document.getElementById("xpTotal").innerHTML = `
 			<h2>Total XP</h2>
-			<p>${totalXP}</p>
+			<p>${totalXP} kB</p>
 		`;
 
 		// 3) AUDIT RATIO
