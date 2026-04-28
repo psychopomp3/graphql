@@ -42,9 +42,9 @@ async function initProfile() {
 
 		// 3) AUDIT RATIO
 		const audits = await getAudits(token);
-		const ratio = computeAuditRatio(audits);
+		const auditData = computeAuditRatio(audits);
 
-		displayAudit(ratio);
+		displayAudit(auditData);
 
 		// 4) SKILLS
 		const progress = await getProgress(token);
