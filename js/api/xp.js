@@ -1,6 +1,7 @@
 import { graphqlRequest } from "./graphql-request.js";
 
-// 1) XP brut (toutes les transactions XP)
+/*MARK: getTransactions
+	1) XP brut (toutes les transactions XP)*/
 export async function getXPTransactions(token) {
 	/*V1
 	const query = `
@@ -89,15 +90,15 @@ export async function getXPTransactions(token) {
 	`;*/
 
 	const data = await graphqlRequest(query, token);
-	//console.log("FULL DATA:", data);
+	console.log("FULL DATA:", data);
 	//return data.transaction;
 
 	//debug
 	const tx = data.transaction;
-	/*console.log("sample transaction:", tx[0]);
-	const paths = [...new Set(tx.map(t => t.path))];
-	console.log("ALL PATHS:", paths);
-	const types = [...new Set(tx.map(t => t.object?.type))];
+	//console.log("sample transaction:", tx[0]);
+	/*const paths = [...new Set(tx.map(t => t.path))];
+	console.log("ALL PATHS:", paths);*/
+	/*const types = [...new Set(tx.map(t => t.object?.type))];
 	console.log("TYPES:", types);*/
 	//console.log("yo:", tx.map(t => t.path));
 	/*console.log(
@@ -125,7 +126,8 @@ export async function getXPTransactions(token) {
 	return filtered;
 }
 
-// 2) XP total
+/*MARK: getTotalXP
+	2) XP total*/
 export async function getTotalXP(token) {
 	const tx = await getXPTransactions(token);
 	//const totalXP = tx.reduce((sum, t) => sum + t.amount, 0);
@@ -151,10 +153,12 @@ export async function getTotalXP(token) {
 	//console.log("TOTAL XP corrigé:", totalXP);
 	//console.log(tx.filter(t => t.path.includes("ascii-art")));
 
-	return Math.round(totalXP / 1000);
+	return totalXP + " B";
+	//return Math.round(totalXP / 1000) + " kB";
 }
 
-// 3) XP par projet (groupé)
+/*MARK: getXPByProject
+	3) XP par projet (groupé)*/
 export async function getXPByProject(token) {
 	const tx = await getXPTransactions(token);
 

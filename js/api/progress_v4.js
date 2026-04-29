@@ -76,56 +76,56 @@ export function computePassFail(progressList) {
 
 /*MARK: computeSkills
 	4) Compute skills*/
-export function computeSkills(progressList, xpTransactions) {
+export function computeSkills(progressList, projectsData) {
 
-	const projectSkills = {
-		"lem-in": ["Algorithms", "Go"],
-		"forum": ["Backend"],
-		"real-time-forum": ["Backend", "Frontend", "JavaScript"],
-		"groupie-tracker": ["Frontend", "JavaScript"],
-		"make-your-game": ["Game", "JavaScript"],
-		"tetris-optimizer": ["Algorithms"],
-		"dockerize": ["Docker"],
-		"ascii-art-web": ["Frontend"],
-		"net-cat": ["Backend"],
-		"authentication": ["Backend"],
-		"image-upload": ["Backend"],
-		"search-bar": ["Frontend"],
-		"visualizations": ["Frontend"],
-	};
+	const last = {};
 
-	// XP max par projet
-	const xpMap = {};
-	xpTransactions.forEach(t => {
-		if (!xpMap[t.path] || t.amount > xpMap[t.path]) {
-			xpMap[t.path] = t.amount;
+	// 1. dernier état par projet
+	progressList.forEach(p => {
+		if (!p.path) return;
+
+		if (
+			!last[p.path] ||
+			new Date(p.createdAt) > new Date(last[p.path].createdAt)
+		) {
+			last[p.path] = p;
 		}
 	});
 
-	// total XP global
-	const totalXP = Object.values(xpMap).reduce((a, b) => a + b, 0);
+	const acquired = {};
+	const total = {};
 
-	const skills = {};
+	// 2. parcourir tous les projets connus
+	projectsData.forEach(project => {
+		const name = project.displayedName;
+		const skills = project.baseSkills || {};
 
-	Object.entries(xpMap).forEach(([path, xp]) => {
-		const projectName = path.split("/").pop();
-		const skillList = projectSkills[projectName];
+		const path = `/rouen/div-01/${name}`;
+		const progress = last[path];
 
-		if (!skillList) return;
+		const isValid = progress && progress.grade >= 1;
 
-		skillList.forEach(skill => {
-			if (!skills[skill]) {
-				skills[skill] = 0;
+		for (const skill in skills) {
+			const value = skills[skill];
+
+			// total possible
+			if (!total[skill]) total[skill] = 0;
+			total[skill] += value;
+
+			// acquis
+			if (isValid) {
+				if (!acquired[skill]) acquired[skill] = 0;
+				acquired[skill] += value;
 			}
-			skills[skill] += xp;
-			//skills[skill] += xp / skillList.length;
-		});
+		}
 	});
 
-	// conversion %
-	return Object.entries(skills).map(([name, xp]) => ({
-		name,
-		value: totalXP ? (xp / totalXP) * 100 : 0
+	// 3. ratio %
+	return Object.keys(total).map(skill => ({
+		name: skill,
+		value: total[skill]
+			? (acquired[skill] / total[skill]) * 100
+			: 0
 	}));
 }
 

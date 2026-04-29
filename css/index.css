@@ -20,6 +20,7 @@ input, button, textarea, select, fieldset {
 	--opposite: rgb(227, 226, 229);
 	--opposite-L1: rgba(227, 226, 229, .05);
 	--opposite-L2: rgba(227, 226, 229, .2);
+	--opposite-L2-0: rgba(227, 226, 229, 0);
 	--color-1a: #9969ff;
 	--color-1b: #b795ff;
 	--bg: var(--color-1a);
@@ -29,6 +30,7 @@ input, button, textarea, select, fieldset {
 	--error-bg: rgba(255, 0, 0, .2);
 	--theme-icon: url("../img/moon.svg");
 	--opacity-bg: .35;
+	--logo-bg: url("../img/space10-logo-light.svg");
 	--radius: 10px;
 	--transition: .25s ease; 
 }
@@ -39,12 +41,14 @@ html.dark {
 	--opposite: rgb(26, 25, 28);
 	--opposite-L1: rgba(26, 25, 28, .2);
 	--opposite-L2: rgba(26, 25, 28, .3);
+	--opposite-L2-0: rgba(26, 25, 28, 0);
 	--bg: #333;
 	--btn: var(--main);
 	--btn-bg: var(--color-1a);
 	--error: red;
 	--theme-icon: url("../img/sun.svg");
 	--opacity-bg: .2;
+	--logo-bg: url("../img/space10-logo-dark.svg");
 }
 
 ::selection {
@@ -72,7 +76,8 @@ body::before {
 	position: fixed;
 	inset: 0;
 	z-index: -1;
-	background: url("../img/01-trame.svg") no-repeat center / cover;
+	background: url("../img/01-trame.svg") no-repeat center / cover,
+		var(--logo-bg) no-repeat center bottom 33% / 50%;
 	opacity: var(--opacity-bg);
 }
 
@@ -94,7 +99,7 @@ header::before {
 	inset: 0 0 -50% 0;
 	background: linear-gradient(to bottom,
 		var(--opposite-L2) 41.5%,
-		transparent 100%);
+		var(--opposite-L2-0) 100%);
 	z-index: -1;
 }
 
@@ -117,6 +122,8 @@ header h1 {
 	/*background: var(--theme-icon) no-repeat center / cover;*/
 	cursor: pointer;
 	background: none;
+	overflow: hidden;
+	border-radius: var(--radius);
 }
 
 #themeToggle::before {

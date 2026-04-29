@@ -37,7 +37,7 @@ async function initProfile() {
 
 		document.getElementById("xpTotal").innerHTML = `
 			<h2>Total XP</h2>
-			<p>${totalXP} kB</p>
+			<p>${totalXP}</p>
 		`;
 
 		// 3) AUDIT RATIO
@@ -46,33 +46,34 @@ async function initProfile() {
 
 		displayAudit(auditData);
 
+		// 6) XP TIMELINE GRAPH
+		const xpTransactions = await getXPTransactions(token);
+		const svgTimeline = document.getElementById("xpTimeline");
+		//console.log("XP TIMELINE INPUT:", xpTransactions);
+		
+		drawXPTimeline(svgTimeline, xpTransactions);
+
 		// 4) SKILLS
 		const progress = await getProgress(token);
-		console.log("sample progress item:", progress[0]);
-		const skills = computeSkills(progress);
+		//console.log("sample progress item:", progress[0]);
+		const skills = computeSkills(progress, xpTransactions);
 
 		displaySkills(skills);
 
-		// 3) XP TIMELINE GRAPH
-		const xpTransactions = await getXPTransactions(token);
-		const svgTimeline = document.getElementById("xpTimeline");
-		console.log("XP TIMELINE INPUT:", xpTransactions);
-		drawXPTimeline(svgTimeline, xpTransactions);
-
-		// 4) PASS / FAIL GRAPH (GLOBAL)
+		// 5) PASS / FAIL GRAPH (GLOBAL)
 		//const progress = await getProgress(token);
 		const { pass, fail } = computePassFail(progress);
 		const svgPie = document.getElementById("passFailChart");
 
 		drawPassFail(svgPie, pass, fail);
 
-		// 5) XP BY PROJECT GRAPH
+		// 7) XP BY PROJECT GRAPH
 		const xpByProject = await getXPByProject(token);
 		const svgProjects = document.getElementById("xpProjectsChart");
 
 		drawXPProjects(svgProjects, xpByProject);
 
-		// 6) EVENT FILTER (pour le pie chart)
+		// 8) EVENT FILTER (pour le pie chart)
 		setupEventFilter(progress);
 
 	} catch (err) {

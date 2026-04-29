@@ -3,7 +3,11 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Document</title>
+	<title>Space10 intra</title>
+
+	<link rel="icon" href="./img/favicon.ico" type="image/x-icon">
+	<!--<link rel="icon" type="image/png" href="./favicon.png">-->
+	<link rel="icon" type="image/svg+xml" href="./img/space10-logo-indigo.svg">
 
 	<link rel="stylesheet" href="./css/fonts.css">
 	<link rel="stylesheet" href="./css/profile.css">
@@ -24,15 +28,17 @@
 		</div>
 
 		<div class="card">
-			<h2>Pass / Fail</h2>
-			<select id="eventFilter">
-				<option value="all">Tous les events</option>
-				<option value="project">Projets</option>
-				<option value="exercise">Exercices</option>
-				<option value="piscine">Piscine</option>
-				<option value="exam">Examens</option>
-			</select>
-			<svg id="passFailChart" width="200" height="200"></svg>
+			<h2>Pass/Fail by Events</h2>
+			<div id="selectWrapper">
+				<select id="eventFilter">
+					<option value="all">All Events</option>
+					<option value="project">Projects</option>
+					<option value="exercise">Exercices</option>
+					<option value="piscine">Piscines</option>
+					<option value="exam">Exams</option>
+				</select>
+				<svg id="passFailChart" width="200" height="200"></svg>
+			</div>
 		</div>
 
 		<div class="card">
@@ -41,7 +47,7 @@
 		</div>
 
 		<div class="card">
-			<h2>XP par projet</h2>
+			<h2>XP by Project</h2>
 			<svg id="xpProjectsChart" width="100%" height="200" viewBox="0 0 800 200"></svg>
 		</div>
 	</main>

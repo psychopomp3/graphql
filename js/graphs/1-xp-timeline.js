@@ -6,11 +6,11 @@ export function drawXPTimeline(svg, transactions) {
 	const width = svg.viewBox.baseVal.width || svg.clientWidth || 800;
 	const height = svg.viewBox.baseVal.height || svg.clientHeight || 200;
 
-	console.log("SVG DOM:", svg);
+	/*console.log("SVG DOM:", svg);
 	console.log("clientWidth:", svg.clientWidth);
 	console.log("clientHeight:", svg.clientHeight);
 	console.log("SVG size:", svg.clientWidth, svg.clientHeight);
-	console.log("data:", transactions.length);
+	console.log("data:", transactions.length);*/
 
 	// Convertir les données
 	/*const sorted = [...transactions].sort(

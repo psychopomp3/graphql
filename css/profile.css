@@ -6,6 +6,8 @@
 /*reset simple des tyles prédéfinis:*/
 input, button, textarea, select, fieldset {
 	appearance: none;
+	-webkit-appearance: none;
+    -moz-appearance: none;
 	border: none;
 	background: none;
 	font: inherit;
@@ -111,10 +113,11 @@ header h1 {
 	position: relative;
 	width: calc(1.5rem + 2vw);
 	height: calc(1.5rem + 2vw);
-	padding: 1vw;
+	/*padding: 1vw;*/
 	border: .1rem solid transparent;
 	cursor: pointer;
 	background: none;
+	overflow: hidden;
 }
 
 #themeToggle::before,
@@ -161,7 +164,11 @@ html.dark #logoutBtn:focus::before {
 }
 
 #logoutBtn {
-	margin-left: .5vw;
+	/*margin-right: .5vw;*/
+	border-radius: var(--radius) 0 0 var(--radius);
+}
+#themeToggle {
+	border-radius: 0 var(--radius) var(--radius) 0;
 }
 /*#endregion*/
 
@@ -251,6 +258,64 @@ main > div:nth-child(4) {
 
 /*#region*MARK: graphs
 */
+main > div:nth-child(2) {
+	display: flex;
+	flex-direction: column;
+	justify-content: start;
+	align-items: start;
+}
+
+#selectWrapper {
+	/*background-color: rgba(107, 142, 35, .2);*/
+	width: 50%;
+	height: fit-content;
+	align-self: center;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: start;
+	align-items: center;
+}
+/* La flèche */
+#selectWrapper::after {
+    content: "▼";
+    position: absolute;
+    right: 10px;
+    top: 20px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: var(--main);
+    font-size: .8rem;
+	/*background-color: var(--opposite);*/
+}
+
+#eventFilter {
+	/*background-color: var(--opposite-L2);*/
+	margin-bottom: 4px;
+	padding: 8px;
+	width: 100%;
+	height: 40px;
+	border-width: .1rem;
+	border-style: solid;
+	border-top-color: transparent;
+	border-right-color: transparent;
+	border-bottom-color: var(--opposite-L2);
+	border-left-color: var(--opposite-L2);
+	cursor: pointer;
+}
+
+#eventFilter:focus,
+#eventFilter:hover {
+	outline: none;
+	border-color: var(--opposite-L2);
+	background-color: var(--opposite-L1);
+}
+
+#eventFilter option {
+	background-color: var(--opposite-L2);
+	color: var(--main-muted);
+}
+
 svg {
 	width: 100%;
 	height: 220px;
@@ -267,6 +332,14 @@ svg {
 	stroke: #555;
 	transition: stroke var(--transition);
 }*/
+
+#passFailChart {
+	/*background-color: rgba(154, 205, 50, .2);*/
+	width: fit-content;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
 
 #passFailChart > circle:nth-child(1) {
 	color: var(--btn-bg);
@@ -296,26 +369,6 @@ svg {
 	font-size: .6rem;
 }
 /*#endregion*/
-
-
-/*redo some select whatev*/
-#concerts select,
-.miniDisplay {
-	/*background-color: rgb(121, 148, 109);*/
-	background: linear-gradient(to bottom,
-		hsl(182, 7%, 69%) 0%,
-		hsl(182, 7%, 60%) 50%,
-		hsl(182, 7%, 53%) 100%);
-}
-
-#concerts select {
-	width: 80%;
-	margin-bottom: 4px;
-}
-
-#concerts select option {
-	background-color: hsl(182, 7%, 60%);
-}
 
 /*#region*MARK: media queries
 */
